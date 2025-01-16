@@ -11,7 +11,7 @@ unsigned long previousMillis = 0;  // will store last time button has pressed
     pinMode(BUTTON_PIN, INPUT_PULLUP); // Button with pull-up
     pinMode(CH_PD_PIN, OUTPUT);  // sets D1 to an output which will pull the transistor on
     digitalWrite(CH_PD_PIN, HIGH);
-    delay(5000);
+    delay(4000);
     digitalWrite(CH_PD_PIN, LOW);  // latches the transistor to keep device on
 
     pinMode(led_pin, OUTPUT);  // sets GPIO 2 to an input so we can read the PIR output state
@@ -28,14 +28,14 @@ unsigned long previousMillis = 0;  // will store last time button has pressed
  void loop() {
   if(digitalRead(BUTTON_PIN) == LOW) {
     oled.setCursor(0, 0);
-    oled.print("Button pressed");
+    oled.print("Button pressed ");
     digitalWrite(led_pin, HIGH);  // sets GPIO 2 to high (this is the PIR record)
     delay(500);
     digitalWrite(led_pin, LOW);  // sets GPIO 2 to low (this is the PIR record)
     delay(500);
 
     unsigned long currentMillis = millis();
-    if(currentMillis - previousMillis > 10000) {
+    if(currentMillis - previousMillis > 5000) {
       oled.clear();
       while(digitalRead(BUTTON_PIN) == LOW){
         oled.setCursor(0, 0);
@@ -45,9 +45,9 @@ unsigned long previousMillis = 0;  // will store last time button has pressed
       oled.off();
       digitalWrite(CH_PD_PIN, HIGH);  // turns the device off
     }
-    previousMillis = currentMillis;
   }
   else{
+    previousMillis = millis();
     oled.setCursor(0, 0);
     oled.print("Device is ready");
    }
