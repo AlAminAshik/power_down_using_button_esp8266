@@ -3,7 +3,7 @@
 
 const int led_pin = D5;  //led connected to this pin
 const int BUTTON_PIN = D7;   // GPIO where the button is connected //D8, D4 not suitable
-const int CH_PD_PIN = D3;    // Connects to CH_PD (optional if directly controlled) //must be D3
+const int CH_PD_PIN = D4;    // Connects to CH_PD (optional if directly controlled) //must be D3
 
 unsigned long previousMillis = 0;  // will store last time button has pressed
 
